@@ -606,6 +606,12 @@ main{
   grid-template-columns:repeat(auto-fill,minmax(var(--card-basis-desktop),1fr));
 }
 
+/* Ensure cards in both grids have identical dimensions */
+#categoryGrid .card,
+#related .card{
+  min-height:var(--card-minh-desktop);
+}
+
 @media (max-width:640px){
   .grid{
     gap:var(--space-md);
@@ -617,6 +623,12 @@ main{
   #related.grid{
     gap:var(--space-md);
     grid-template-columns:repeat(auto-fill,minmax(var(--card-basis-mobile),1fr));
+  }
+  
+  /* Ensure cards in both grids have identical mobile dimensions */
+  #categoryGrid .card,
+  #related .card{
+    min-height:var(--card-minh-mobile);
   }
 }
 
