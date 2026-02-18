@@ -3491,3 +3491,25 @@ header .logo{
   position: relative !important;
   z-index: 2 !important;
 }
+
+/* === نقل النص تحت صورة القسم === */
+
+.canva-cats .rect-card{
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.canva-cats .rect-card .rect-inner{
+  position: relative !important;
+  height: 220px; /* ارتفاع المربع (عدل الرقم إذا تحب) */
+}
+
+.canva-cats .rect-card .rect-text{
+  position: static !important;   /* إلغاء التمركز فوق الصورة */
+  margin-top: 12px !important;
+  text-align: center !important;
+  background: none !important;
+  padding: 0 !important;
+  z-index: auto !important;
+}
+
