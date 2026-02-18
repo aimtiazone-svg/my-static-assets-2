@@ -3462,31 +3462,3 @@ header .logo{
   .card{ min-height: var(--card-minh-mobile); }
 }
 
-/* === الأقسام: خلّ الصورة تملأ المربع بالكامل === */
-.canva-cats .rect-card .rect-inner{
-  overflow: hidden !important;
-  position: relative !important;
-}
-
-.canva-cats .rect-card .rect-img{
-  position: absolute !important;
-  inset: 0 !important;          /* يمسك كل مساحة المربع */
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.canva-cats .rect-card .rect-img img{
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;  /* هذا اللي يخليها ممتلئة */
-  max-height: none !important;   /* يلغي قيود max-height السابقة */
-  transform: none !important;    /* يلغي الميلان/الدوران إن كان موجود */
-}
-
-/* لو عندك نص داخل المربع وتبيه يطلع فوق الصورة */
-.canva-cats .rect-card .rect-text{
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-
