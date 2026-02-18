@@ -3461,24 +3461,3 @@ header .logo{
 @media (max-width:640px){
   .card{ min-height: var(--card-minh-mobile); }
 }
-
-
-
-
-
-/* ===== Hero Ad (Desktop فقط): بدون قص + ملء الشاشة ===== */
-@media (min-width:900px){
-  #adsPeek .ad-tile{
-    /* ملء الشاشة */
-    height: calc(100vh - 64px) !important;  /* عدّل 64px إذا ارتفاع الهيدر مختلف */
-    min-height: 640px !important;
-
-    /* بدون قص */
-    background-size: contain !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-
-    /* خلفية خلف الصورة (للأشرطة السوداء/الفراغ) */
-    background-color: #0b1220 !important;   /* غيّرها لأبيض لو تفضّل */
-  }
-}
