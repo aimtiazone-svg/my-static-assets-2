@@ -3513,3 +3513,34 @@ header .logo{
   z-index: auto !important;
 }
 
+/* === خلي المربع = rect-inner فقط، والنص خارج المربع === */
+
+/* الحاوية */
+.canva-cats .rect-card{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* هذا هو "المربع" اللي عليه الشكل (ظل/حدود/زوايا) */
+.canva-cats .rect-card .rect-inner{
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;            /* عدّلها حسب شكل مربعاتك */
+  box-shadow: 0 10px 24px rgba(0,0,0,.12) !important; /* عدّل/احذف لو ما تبي ظل */
+  background: #fff !important;               /* لو تحتاج خلفية للمربع */
+  height: 220px;                             /* عدّل ارتفاع المربع */
+}
+
+/* النص يصير كـ "كابشن" خارج المربع */
+.canva-cats .rect-card .rect-text{
+  position: static !important;
+  margin-top: 12px !important;
+  padding: 0 !important;
+  background: none !important;
+  text-align: center !important;
+}
