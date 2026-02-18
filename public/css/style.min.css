@@ -3446,12 +3446,3 @@ header .logo{
       saturate(1.04) contrast(1.04) !important;
   }
 }
-/* اجعل كروت صفحة الأقسام نفس كروت الرئيسية */
-#catView, #catsView, #sectionsView, #categoryView, #sectionView{
-  --card-basis-desktop: 220px;
-  --card-minh-desktop: 120px;
-
-  --card-basis-mobile: 180px;
-  --card-minh-mobile: 110px;
-}
-
