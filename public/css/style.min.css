@@ -3446,3 +3446,19 @@ header .logo{
       saturate(1.04) contrast(1.04) !important;
   }
 }
+
+/* ===== Unified card size for ALL pages ===== */
+:root{
+  --card-basis-desktop: 220px;
+  --card-minh-desktop: 120px;
+
+  --card-basis-mobile: 180px;
+  --card-minh-mobile: 110px;
+}
+
+/* (اختياري) ثبّت أقل ارتفاع للكارد نفسه بكل الصفحات */
+.card{ min-height: var(--card-minh-desktop); }
+@media (max-width:640px){
+  .card{ min-height: var(--card-minh-mobile); }
+}
+
