@@ -3548,29 +3548,3 @@ header .logo{
 
 
 
-
-
-
-/* ✅ كاردين في كل صف على الجوال */
-@media (max-width: 640px){
-
-  /* غطّيت أشهر أسماء الحاويات */
-  .grid,
-  .products-grid,
-  .category-grid,
-  .related-products,
-  .related-products .grid{
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
-  }
-
-  /* لو الكاردات كانت داخل Flex وتسبب كارد واحد */
-  .grid > *,
-  .products-grid > *,
-  .category-grid > *{
-    width: 100% !important;
-    flex: 0 0 auto !important;
-    max-width: 100% !important;
-  }
-}
