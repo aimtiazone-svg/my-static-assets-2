@@ -3549,3 +3549,35 @@ header .logo{
 
 
 
+
+/* ✅ إجبار عرض كاردين في كل صف على الجوال (Flex/Grid) */
+@media (max-width: 640px){
+
+  /* الحاوية التي فيها الكاردات */
+  .row,
+  .products,
+  .products-list,
+  .product-list,
+  .cards,
+  .items,
+  .shop-items{
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  /* نفس الكارد أو العمود الذي يحتوي الكارد */
+  .row > *,
+  .products > *,
+  .products-list > *,
+  .product-list > *,
+  .cards > *,
+  .items > *,
+  .shop-items > *{
+    width: calc(50% - 6px) !important;
+    max-width: calc(50% - 6px) !important;
+    flex: 0 0 calc(50% - 6px) !important;
+  }
+}
+
+
