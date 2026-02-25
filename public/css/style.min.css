@@ -7943,3 +7943,104 @@ header .logo {
     gap: 10px !important;
   }
 }
+
+/* ===== PATCH V45: Flat organic category cards (from user image) ===== */
+.canva-cats .rect-card .rect-inner {
+  background: #f5f6f8 !important;
+  box-shadow: none !important;
+  border: 1px solid #eef0f2 !important;
+  border-radius: 24px 34px 24px 30px / 30px 24px 34px 24px !important;
+  height: 130px !important;
+  width: 130px !important;
+  margin: 0 auto !important;
+  transition: transform 0.3s ease, background 0.3s ease !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-inner {
+    height: 90px !important;
+    width: 90px !important;
+    border-radius: 18px 26px 18px 22px / 22px 18px 26px 18px !important;
+  }
+}
+
+.canva-cats .rect-card:hover .rect-inner {
+  transform: translateY(-4px) !important;
+  background: #edf0f3 !important;
+}
+
+.canva-cats .rect-card .rect-img {
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+.canva-cats .rect-card .rect-img img {
+  position: static !important;
+  width: 70% !important;
+  height: 70% !important;
+  max-height: 70% !important;
+  object-fit: contain !important;
+  transform: none !important;
+  filter: none !important;
+  margin: auto !important;
+}
+
+.canva-cats .rect-card:hover .rect-img img {
+  transform: scale(1.05) !important;
+  filter: none !important;
+}
+
+.dark .canva-cats .rect-card:hover .rect-img img,
+.dark .canva-cats .rect-card .rect-img img,
+.canva-cats .rect-card:active .rect-img img,
+.dark .canva-cats .rect-card:active .rect-img img {
+  filter: none !important;
+  transform: none !important;
+}
+
+.canva-cats .rect-card {
+  min-width: 150px !important;
+  max-width: 150px !important;
+  height: auto !important;
+  padding-bottom: 12px !important;
+  align-items: center !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card {
+    min-width: 100px !important;
+    max-width: 100px !important;
+  }
+}
+
+.canva-cats .rect-card .rect-text {
+  margin-top: 14px !important;
+  text-align: center !important;
+}
+
+.canva-cats .rect-card .rect-text b {
+  font-size: .95rem !important;
+  color: #0b1220 !important;
+  display: block;
+  white-space: normal !important;
+  font-weight: 800 !important;
+}
+
+.dark .canva-cats .rect-card .rect-inner {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.dark .canva-cats .rect-card .rect-text b {
+  color: #f1f5f9 !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-text b {
+    font-size: .8rem !important;
+  }
+}
