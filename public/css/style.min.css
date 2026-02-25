@@ -9702,3 +9702,46 @@ header .logo {
     padding-inline: 0 !important;
   }
 }
+
+/* ===== PATCH V58: Exact Desktop Match on Mobile ===== */
+
+@media (max-width: 640px) {
+  /* Ensure the cards are exactly the same size as desktop */
+  .canva-cats .rect-card {
+    min-width: 140px !important;
+    max-width: 140px !important;
+    height: auto !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 40px !important; /* Space for text outside */
+  }
+
+  /* Box dimensions exact match */
+  .canva-cats .rect-card .rect-inner {
+    width: 130px !important;
+    height: 125px !important;
+    border-radius: 20px !important; /* Match desktop radius exactly */
+  }
+
+  /* Back card match */
+  .canva-cats .rect-card .rect-inner::before {
+    border-radius: 20px !important;
+  }
+
+  /* Text size match */
+  .canva-cats .rect-card .rect-text {
+    width: 140px !important;
+    margin-top: 18px !important;
+  }
+  .canva-cats .rect-card .rect-text b {
+    font-size: 1.05rem !important; /* Force desktop font size */
+  }
+
+  /* Keep horizontal scroll configuration */
+  .canva-cats .cats-rail {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    padding: 20px 16px 30px 16px !important; /* Generous padding so shadows/tilted edges aren't cut off */
+    gap: 16px !important;
+  }
+}
