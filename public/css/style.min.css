@@ -10202,3 +10202,129 @@ header .logo {
   box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08) !important;
 }
 
+
+/* ===== PATCH V63: RESTORING TILTED STACKED DESIGN (No Shadow, Text Outside) ===== */
+
+/* 1. Reset Card Container */
+.canva-cats .rect-card {
+  flex: 0 0 auto !important;
+  position: relative !important;
+  width: 150px !important;
+  height: 140px !important; /* Box height */
+  margin-bottom: 50px !important; /* Large space for text outside */
+  display: block !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 768px) {
+  .canva-cats .rect-card {
+    width: 140px !important;
+    height: 130px !important;
+    margin-bottom: 45px !important;
+  }
+}
+
+/* 2. The Box (.rect-inner) - FRONT CARD */
+.canva-cats .rect-card .rect-inner {
+  position: absolute !important;
+  inset: 0 !important;
+  background: #f1f3f6 !important;
+  border: 1px solid #e5e8ec !important;
+  border-radius: 22px !important;
+  transform: rotate(4deg) !important; /* START TILT */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2), background 0.3s ease !important;
+  z-index: 2 !important;
+  box-shadow: none !important; /* NO SHADOW */
+}
+
+/* 3. The Back Card (Pseudo-element) - BACK CARD */
+.canva-cats .rect-card .rect-inner::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: #e2e6ea !important; /* Darker flat background */
+  border: 1px solid #d5dadd !important;
+  border-radius: 22px !important;
+  transform: rotate(-8deg) translate(-4px, 2px) !important; /* STATIC COUNTER TILT */
+  opacity: 1 !important;
+  z-index: -1 !important;
+  display: block !important;
+  box-shadow: none !important;
+}
+
+/* 4. HOVER: Straightens the front box (0deg) */
+.canva-cats .rect-card:hover .rect-inner {
+  transform: rotate(0deg) translateY(-4px) !important; /* BECOMES STRAIGHT */
+  background: #ffffff !important;
+}
+
+/* 5. Image: Larger and fills the box */
+.canva-cats .rect-card .rect-img {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.canva-cats .rect-card .rect-img img {
+  width: 92% !important;
+  height: 92% !important;
+  object-fit: contain !important;
+  transform: rotate(-4deg) !important; /* Counter rotate when box is 4deg */
+  transition: transform 0.3s ease !important;
+}
+
+.canva-cats .rect-card:hover .rect-img img {
+  transform: rotate(0deg) scale(1.05) !important; /* Straightens with the box */
+}
+
+/* 6. Text: Fixed OUTSIDE and BELOW */
+.canva-cats .rect-card .rect-text {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  text-align: center !important;
+  margin-top: 15px !important;
+  padding: 0 !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+}
+
+.canva-cats .rect-card .rect-text b {
+  font-size: 1.05rem !important;
+  color: #0b1220 !important;
+  font-weight: 800 !important;
+  display: block !important;
+  white-space: normal !important;
+}
+
+/* 7. Header Styling Cleanup */
+.canva-cats-header {
+  text-align: center !important;
+  margin-bottom: 25px !important;
+}
+.canva-cats-header h2 {
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 5px !important;
+}
+.canva-cats-header p {
+  font-size: 0.9rem !important;
+}
+
+/* 8. Mobile Rail - SIDE SCROLLING (Identical styling) */
+@media (max-width: 768px) {
+  .canva-cats .cats-rail {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    padding: 15px 16px 50px 16px !important;
+    gap: 20px !important;
+  }
+}
+
+/* Hide any badges */
+.canva-cats-badge { display: none !important; }
