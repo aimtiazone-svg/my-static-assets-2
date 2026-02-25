@@ -9991,3 +9991,73 @@ header .logo {
 .dark .canva-cats .rect-card .rect-inner { background: #1e293b; border-color: #334155; }
 .dark .canva-cats .rect-card .rect-text b { color: #f1f5f9; }
 
+
+/* ===== PATCH V61: Unified Sizing & Smaller Header ===== */
+
+/* 1. Smaller Header */
+.canva-cats-header h2 {
+  font-size: 1.4rem !important; /* Reduced from 1.8rem */
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin-bottom: 8px !important;
+}
+
+.canva-cats-header p {
+  font-size: 0.95rem !important; /* Reduced from 1.1rem */
+  color: #64748b !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats-header h2 {
+    font-size: 1.2rem !important;
+  }
+  .canva-cats-header p {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* 2. COMPLETELY Identical Mobile & Desktop Cards */
+@media (max-width: 768px) {
+  /* Unified dimensions for the card */
+  .canva-cats .rect-card {
+    width: 160px !important; /* Same as desktop */
+    height: 160px !important; /* Same as desktop */
+    margin: 0 !important;
+  }
+
+  /* Unified dimensions for the inner box */
+  .canva-cats .rect-card .rect-inner {
+    border-radius: 28px !important; /* Same as desktop */
+    background: #f8fafc !important;
+    border: 1px solid #f1f5f9 !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05) !important;
+  }
+
+  /* Unified Image padding & size */
+  .canva-cats .rect-card .rect-img {
+    padding: 15px !important;
+  }
+
+  /* Unified Text styling */
+  .canva-cats .rect-card .rect-text {
+    width: 160px !important;
+    margin-top: 15px !important;
+  }
+  
+  .canva-cats .rect-card .rect-text b {
+    font-size: 1.1rem !important; /* Same as desktop */
+    white-space: normal !important; /* Allow wrapping if name is long */
+  }
+
+  /* Keep side scrolling but ensure it looks centered/balanced */
+  .canva-cats .cats-rail {
+    padding: 10px 16px 45px 16px !important; /* Space for text below */
+    gap: 20px !important; /* Same gap as desktop */
+  }
+}
+
+/* Ensure the badge is hidden (if any stray instances exist) */
+.canva-cats-badge {
+  display: none !important;
+}
+
