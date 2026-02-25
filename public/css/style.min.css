@@ -8681,3 +8681,171 @@ header .logo {
     font-size: .85rem !important;
   }
 }
+
+/* ===== PATCH V50: EXACT Flat, Tilted-to-Straight Stacked Cards ===== */
+
+/* Base container for the whole category item */
+.canva-cats .rect-card {
+  position: relative !important;
+  min-width: 140px !important;
+  max-width: 140px !important;
+  height: auto !important;
+  padding-bottom: 30px !important; /* Space for text below */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin-top: 15px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card {
+    min-width: 105px !important;
+    max-width: 105px !important;
+  }
+}
+
+/* The Box containing the image (Front Card) */
+.canva-cats .rect-card .rect-inner {
+  position: relative !important;
+  width: 130px !important;
+  height: 125px !important;
+  background: #f1f3f6 !important; /* Light flat gray */
+  border: 1px solid #e5e8ec !important; /* Extremely subtle flat border, NO SHADOW */
+  box-shadow: none !important;
+  border-radius: 20px !important;
+  overflow: visible !important;
+  margin: 0 auto !important;
+  /* Start tilted */
+  transform: rotate(4deg) !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2), background 0.3s ease !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-inner {
+    width: 95px !important;
+    height: 90px !important;
+    border-radius: 16px !important;
+  }
+}
+
+/* The "Back Card" (Hidden by default, shows on hover to create stack) */
+.canva-cats .rect-card .rect-inner::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: #e2e6ea !important; /* Slightly darker flat gray */
+  border: 1px solid #d5dadd !important;
+  border-radius: 20px !important;
+  transform: rotate(0deg) !important; /* Hidden exactly behind */
+  opacity: 0 !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.3s ease !important;
+  z-index: -1 !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-inner::before {
+    border-radius: 16px !important;
+  }
+}
+
+/* HOVER ANIMATION: Front card straightens to flat, back card tilts out */
+.canva-cats .rect-card:hover .rect-inner {
+  transform: rotate(0deg) translateY(-4px) !important; /* Straightens to 0deg */
+  background: #ffffff !important; /* Brightens */
+  box-shadow: none !important; /* STILL NO SHADOW, completely flat */
+}
+
+.canva-cats .rect-card:hover .rect-inner::before {
+  opacity: 1 !important; /* Reveal back card */
+  /* Back card tilts the opposite way to create the "two stacked cards" effect */
+  transform: rotate(-5deg) translate(-3px, 5px) !important; 
+}
+
+/* Image Wrapper */
+.canva-cats .rect-card .rect-img {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 3 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* The Image itself */
+.canva-cats .rect-card .rect-img img {
+  position: relative !important;
+  width: 85% !important; /* Fills nicely */
+  height: 85% !important;
+  max-height: 85% !important;
+  object-fit: contain !important;
+  /* Counter-rotate so the image is STRAIGHT even while the box is tilted */
+  transform: rotate(-4deg) !important; 
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2) !important;
+  filter: none !important; /* NO SHADOW */
+  margin: auto !important;
+}
+
+/* On hover, since the box goes to 0deg, the image must also go to 0deg */
+.canva-cats .rect-card:hover .rect-img img {
+  transform: rotate(0deg) scale(1.05) !important; /* Straightens to 0deg */
+  filter: none !important; /* NO SHADOW */
+}
+
+/* Force override any inherited filters (dark mode, normal states) */
+.dark .canva-cats .rect-card:hover .rect-img img,
+.dark .canva-cats .rect-card .rect-img img,
+.canva-cats .rect-card:active .rect-img img,
+.dark .canva-cats .rect-card:active .rect-img img {
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* Dark Mode Boxes */
+.dark .canva-cats .rect-card .rect-inner {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+.dark .canva-cats .rect-card .rect-inner::before {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+}
+.dark .canva-cats .rect-card:hover .rect-inner {
+  background: #334155 !important;
+  box-shadow: none !important;
+}
+
+/* Category Text (Fixed OUTSIDE and BELOW the box) */
+.canva-cats .rect-card .rect-text {
+  position: absolute !important;
+  bottom: 0 !important; /* Anchored to bottom of the entire card container */
+  left: 0 !important;
+  right: 0 !important;
+  text-align: center !important;
+  width: 100% !important;
+  z-index: 4 !important;
+}
+
+.canva-cats .rect-card .rect-text b {
+  font-size: 1.05rem !important;
+  color: #0b1220 !important;
+  font-weight: 800 !important;
+  display: block !important;
+  white-space: normal !important;
+  line-height: 1.2 !important;
+}
+
+.dark .canva-cats .rect-card .rect-text b {
+  color: #f8fafc !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card {
+    padding-bottom: 26px !important;
+  }
+  .canva-cats .rect-card .rect-text b {
+    font-size: .85rem !important;
+  }
+}
