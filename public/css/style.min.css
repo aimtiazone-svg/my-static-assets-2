@@ -3544,3 +3544,92 @@ header .logo{
   background: none !important;
   text-align: center !important;
 }
+
+
+/* ================================================
+   تعديلات التجاوب — v-mobile-2col
+   ================================================ */
+
+/* ===== 1) صفحة التفاصيل: المنتجات ذات الصلة — عمودان ثابتان على الهاتف ===== */
+@media (max-width: 640px) {
+  /* الشبكة الرئيسية لقسم "منتجات ذات صلة" */
+  #detailView #related {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* ضمان امتلاء الكارد لعرض الخلية */
+  #detailView #related .card {
+    width: 100% !important;
+    min-width: 0 !important;
+    /* حجم الكارت المناسب للعمودين */
+    --card-minh-mobile: 180px;
+  }
+
+  /* حجم الصورة داخل الكارت في صفحة التفاصيل */
+  #detailView #related .frame {
+    aspect-ratio: 1 / 1;
+  }
+
+  /* ضمان ظهور النص والعنوان */
+  #detailView #related .title {
+    font-size: .80rem;
+    -webkit-line-clamp: 2;
+  }
+
+  /* إخفاء المقتطف لتوفير مساحة */
+  #detailView #related .excerpt {
+    display: none !important;
+  }
+}
+
+/* ===== 2) تحسينات تجاوب إضافية للشاشات الصغيرة جداً (≤ 360px) ===== */
+@media (max-width: 360px) {
+  /* تقليل الحواف الداخلية للحاوية */
+  .container {
+    padding-inline: 8px !important;
+  }
+
+  /* تصغير خط العناوين الرئيسية */
+  .cat-head h2 {
+    font-size: 1rem;
+  }
+
+  /* زر الطلب يبقى في سطر واحد */
+  .btn-cta {
+    font-size: .68rem;
+    padding: 5px 6px;
+  }
+
+  /* تصغير الكارت قليلاً */
+  #detailView #related {
+    gap: 6px !important;
+  }
+}
+
+/* ===== 3) صفحة التفاصيل: ضمان أن صورة المنتج الرئيسية لا تطول جداً على الهاتف ===== */
+@media (max-width: 640px) {
+  .main-frame {
+    max-height: 320px !important;
+    min-height: 220px;
+  }
+
+  /* تحسين عرض شريط الصور المصغرة */
+  .strip {
+    gap: 6px;
+  }
+
+  .th {
+    flex: 0 0 52px;
+    height: 52px;
+  }
+}
+
+/* ===== 4) تحسين صفحة التفاصيل على الشاشات المتوسطة (تابلت) ===== */
+@media (min-width: 641px) and (max-width: 900px) {
+  #detailView #related {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+  }
+}
