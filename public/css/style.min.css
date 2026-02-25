@@ -8211,3 +8211,318 @@ header .logo {
     font-size: .85rem !important;
   }
 }
+
+/* ===== PATCH V47: Revert to exact Flat Organic Stacked Category Cards ===== */
+.canva-cats .rect-card {
+  position: relative !important;
+  min-width: 150px !important;
+  max-width: 150px !important;
+  height: auto !important;
+  padding-bottom: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin-top: 10px !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card {
+    min-width: 110px !important;
+    max-width: 110px !important;
+  }
+}
+
+.canva-cats .rect-card .rect-inner {
+  position: relative !important;
+  width: 130px !important;
+  height: 120px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  margin: 0 auto !important;
+  transition: transform 0.3s ease !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-inner {
+    width: 90px !important;
+    height: 85px !important;
+  }
+}
+
+/* Background Card (The tilted organic one behind) */
+.canva-cats .rect-card .rect-inner::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: #f1f3f5 !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 24px 34px 24px 30px / 30px 24px 34px 24px !important;
+  transform: rotate(-4deg) translate(-4px, 4px) !important;
+  transition: transform 0.3s ease, background 0.3s ease !important;
+  z-index: 1 !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-inner::before {
+    border-radius: 18px 26px 18px 22px / 22px 18px 26px 18px !important;
+  }
+}
+
+.dark .canva-cats .rect-card .rect-inner::before {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Foreground Card (The one containing the image) */
+.canva-cats .rect-card .rect-inner::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: #f8f9fa !important; /* Slightly lighter */
+  border: 1px solid #f1f3f5 !important;
+  border-radius: 30px 24px 34px 24px / 24px 30px 24px 34px !important;
+  transform: rotate(2deg) !important;
+  transition: transform 0.3s ease !important;
+  z-index: 2 !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-inner::after {
+    border-radius: 22px 18px 26px 18px / 18px 22px 18px 26px !important;
+  }
+}
+
+.dark .canva-cats .rect-card .rect-inner::after {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+}
+
+/* Hover effect: Raise both */
+.canva-cats .rect-card:hover .rect-inner {
+  transform: translateY(-6px) !important;
+}
+
+.canva-cats .rect-card:hover .rect-inner::before {
+  background: #e9ecef !important;
+}
+
+.dark .canva-cats .rect-card:hover .rect-inner::before {
+  background: #334155 !important;
+}
+
+/* The Image Container */
+.canva-cats .rect-card .rect-img {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 3 !important; /* Above both cards */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px !important;
+}
+
+.canva-cats .rect-card .rect-img img {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  transform: rotate(2deg) !important; /* Match foreground card rotation */
+  transition: transform 0.3s ease !important;
+  filter: none !important;
+}
+
+/* Straighten and scale image on hover */
+.canva-cats .rect-card:hover .rect-img img {
+  transform: rotate(0deg) scale(1.05) !important;
+  filter: none !important;
+}
+
+/* Disable generic filters from other rules */
+.dark .canva-cats .rect-card:hover .rect-img img,
+.dark .canva-cats .rect-card .rect-img img,
+.canva-cats .rect-card:active .rect-img img,
+.dark .canva-cats .rect-card:active .rect-img img {
+  filter: none !important;
+}
+
+/* Category Text (outside, below) */
+.canva-cats .rect-card .rect-text {
+  position: static !important;
+  margin-top: 16px !important;
+  text-align: center !important;
+  width: 100% !important;
+  z-index: 4 !important;
+}
+
+.canva-cats .rect-card .rect-text b {
+  font-size: .95rem !important;
+  color: #0b1220 !important;
+  font-weight: 800 !important;
+  display: block !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+}
+
+.dark .canva-cats .rect-card .rect-text b {
+  color: #f8fafc !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-text {
+    margin-top: 12px !important;
+  }
+  .canva-cats .rect-card .rect-text b {
+    font-size: .85rem !important;
+  }
+}
+
+/* ===== PATCH V48: REVERT to V45 (Flat Square Without Shadows) + Tilted Overlay Logic ===== */
+
+/* 1. Base wrapper: Flat square, slightly tilted */
+.canva-cats .rect-card .rect-inner {
+  background: #f5f6f8 !important;
+  box-shadow: none !important;
+  border: 1px solid #eef0f2 !important;
+  border-radius: 20px !important; /* Normal rounded corners */
+  height: 120px !important;
+  width: 120px !important;
+  margin: 0 auto !important;
+  transform: rotate(-3deg) !important; /* Tilted initially */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-inner {
+    height: 90px !important;
+    width: 90px !important;
+    border-radius: 16px !important;
+  }
+}
+
+/* 2. Before pseudo-element: The "Second Card" behind it */
+.canva-cats .rect-card .rect-inner::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: #e9ecef !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 20px !important;
+  transform: rotate(6deg) translate(0, 0) !important; /* Second card rotated the other way */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  z-index: -1 !important; /* Behind the main inner rect */
+  opacity: 0 !important; /* Hidden normally */
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-inner::before {
+    border-radius: 16px !important;
+  }
+}
+
+/* 3. Hover state: Straighten main card, reveal second card */
+.canva-cats .rect-card:hover .rect-inner {
+  transform: rotate(0deg) translateY(-4px) !important; /* Straighten and lift */
+  background: #ffffff !important;
+  border-color: #f1f3f5 !important;
+}
+
+.canva-cats .rect-card:hover .rect-inner::before {
+  opacity: 1 !important; /* Show the second card */
+  transform: rotate(4deg) translate(4px, 4px) !important; /* Offset it to look stacked */
+}
+
+/* 4. Image inside: Full fill, clear */
+.canva-cats .rect-card .rect-img {
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  inset: 0 !important;
+  padding: 10px !important; /* Padding so it doesn't touch edges */
+}
+
+.canva-cats .rect-card .rect-img img {
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important; /* Best fit */
+  transform: rotate(3deg) !important; /* Counteract parent rotation so image looks straight initially */
+  filter: none !important;
+  margin: auto !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.canva-cats .rect-card:hover .rect-img img {
+  transform: rotate(0deg) scale(1.05) !important; /* Straighten and zoom slightly */
+  filter: none !important;
+}
+
+/* Dark mode resets */
+.dark .canva-cats .rect-card:hover .rect-img img,
+.dark .canva-cats .rect-card .rect-img img,
+.canva-cats .rect-card:active .rect-img img,
+.dark .canva-cats .rect-card:active .rect-img img {
+  filter: none !important;
+}
+
+.dark .canva-cats .rect-card .rect-inner {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+.dark .canva-cats .rect-card .rect-inner::before {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+}
+
+/* 5. Container & Text positioning */
+.canva-cats .rect-card {
+  min-width: 140px !important;
+  max-width: 140px !important;
+  height: auto !important;
+  padding-bottom: 24px !important; /* Room for text */
+  align-items: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  margin-top: 10px !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card {
+    min-width: 100px !important;
+    max-width: 100px !important;
+  }
+}
+
+.canva-cats .rect-card .rect-text {
+  margin-top: 14px !important;
+  text-align: center !important;
+  width: 100% !important;
+  position: static !important; /* Ensure it's in flow below the box */
+}
+
+.canva-cats .rect-card .rect-text b {
+  font-size: .95rem !important;
+  color: #0b1220 !important;
+  display: block;
+  white-space: normal !important;
+  font-weight: 800 !important;
+}
+
+.dark .canva-cats .rect-card .rect-text b {
+  color: #f1f5f9 !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card .rect-text b {
+    font-size: .8rem !important;
+  }
+}
