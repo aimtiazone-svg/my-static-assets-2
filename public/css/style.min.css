@@ -7943,3 +7943,327 @@ header .logo {
     gap: 10px !important;
   }
 }
+
+/* ================================================
+   إعادة تصميم مربعات الأقسام — v-cats-sultan-style
+   تصميم يحاكي موقع سلطان (شكل مربعات شبه متعرجة)
+   ================================================ */
+
+/* --- رأس قسم الأقسام --- */
+#canvaCats {
+  margin: 14px 0 20px !important;
+  padding-inline: 0 !important;
+}
+
+/* --- الشريط الأفقي --- */
+#canvaCats .cats-rail,
+.canva-cats .cats-rail {
+  display: flex !important;
+  gap: 16px !important;
+  overflow-x: auto !important;
+  padding: 12px 10px 24px !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  align-items: flex-end !important;
+  /* لدفع العناصر للأسفل */
+}
+
+#canvaCats .cats-rail::-webkit-scrollbar,
+.canva-cats .cats-rail::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* --- البطاقة الرئيسية (شكل مستوحى من موقع سلطان) --- */
+.canva-cats .rect-card {
+  /* الحجم للدسكتوب */
+  min-width: 190px !important;
+  max-width: 200px !important;
+  min-height: 240px !important;
+  height: auto !important;
+
+  /* المظهر */
+  background: transparent !important;
+  /* لا خلفية للحاوية الخارجية */
+  border: none !important;
+  box-shadow: none !important;
+  scroll-snap-align: start !important;
+  text-decoration: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* --- شكل المربع الرمادي (الصورة المتعرجة في موقع سلطان) --- */
+/* أنا أستخدم border-radius غير متناظر لمحاكاتها لأنها CSS pure */
+.canva-cats .rect-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  /* ارتفاع المربع الرمادي نفسه، مساحته لا تأخذ كل البطاقة */
+  height: 190px !important;
+  background: #f8fafc !important;
+  /* نفس لون موقع سلطان الفاتح */
+  z-index: 0 !important;
+  border-radius: 12px 24px 10px 18px !important;
+  /* تموج خفيف لمحاكاة ورق الكرتون/الصورة المتعرجة */
+  transform: rotate(-1.5deg) !important;
+  transition: transform .25s ease !important;
+}
+
+.canva-cats .rect-card:nth-child(even)::before {
+  border-radius: 20px 12px 18px 10px !important;
+  transform: rotate(1.5deg) !important;
+}
+
+.canva-cats .rect-card:hover::before {
+  transform: rotate(0deg) scale(1.02) !important;
+}
+
+/* --- المحتوى الداخلي --- */
+.canva-cats .rect-card .rect-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 0 10px !important;
+  height: 100% !important;
+  position: relative !important;
+  z-index: 1 !important;
+  /* فوق الخلفية الرمادية */
+  overflow: visible !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: none !important;
+  border: none !important;
+}
+
+/* --- منطقة الصورة --- */
+.canva-cats .rect-card .rect-img {
+  width: 100% !important;
+  height: 160px !important;
+  flex: 0 0 160px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: static !important;
+  overflow: visible !important;
+  margin-top: 15px !important;
+  /* لدفعها وسط المربع الرمادي */
+}
+
+.canva-cats .rect-card .rect-img img {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 170px !important;
+  object-fit: contain !important;
+  position: static !important;
+  transition: transform .3s ease !important;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05)) !important;
+  /* ظل للصورة نفسها */
+  user-select: none !important;
+}
+
+.canva-cats .rect-card:hover .rect-img img {
+  transform: translateY(-6px) scale(1.04) !important;
+}
+
+/* --- النص (اسم القسم) — خارج المربع الرمادي في الأسفل --- */
+.canva-cats .rect-card .rect-text {
+  position: static !important;
+  margin-top: auto !important;
+  /* يدفعه للأسفل */
+  padding-top: 18px !important;
+  padding-bottom: 0 !important;
+  background: none !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+.canva-cats .rect-card .rect-text b {
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: #0d2830 !important;
+  /* لون الأخضر الداكن جداً (قريب للأسود) مثل موقع سلطان */
+  white-space: normal !important;
+  line-height: 1.35 !important;
+  text-align: center !important;
+  display: block !important;
+}
+
+/* --- أسهم التنقل (ظاهرة على الديسكتوب فقط) --- */
+.canva-cats .cats-nav {
+  display: none !important;
+}
+
+@media (hover: hover) and (min-width: 900px) {
+  .canva-cats .cats-nav {
+    display: flex !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    border: 1.5px solid #e5e7eb !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, .1) !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    opacity: 0 !important;
+    transition: opacity .2s ease !important;
+    z-index: 5 !important;
+  }
+
+  .canva-cats:hover .cats-nav {
+    opacity: 1 !important;
+  }
+
+  .canva-cats .cats-nav:hover {
+    background: var(--brand) !important;
+    color: #fff !important;
+    border-color: var(--brand) !important;
+  }
+}
+
+/* ===== على الهاتف: بطاقات أصغر وتجاوز قواعد الموبايل القديمة ===== */
+@media (max-width: 640px) {
+
+  /* إلغاء التمدد */
+  .canva-cats,
+  #canvaCats {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-inline: 0 !important;
+  }
+
+  #canvaCats .cats-rail,
+  .canva-cats .cats-rail {
+    gap: 12px !important;
+    padding: 8px 12px 20px !important;
+  }
+
+  .canva-cats .rect-card {
+    min-width: 130px !important;
+    max-width: 140px !important;
+    height: auto !important;
+    min-height: 174px !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* تصغير الخلفية الرمادية */
+  .canva-cats .rect-card::before {
+    height: 130px !important;
+    border-radius: 10px 18px 8px 14px !important;
+  }
+
+  .canva-cats .rect-card:nth-child(even)::before {
+    border-radius: 16px 8px 14px 8px !important;
+  }
+
+  /* إلغاء الـ relative & absolute من الكود القديم */
+  .canva-cats .rect-card .rect-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding: 0 6px !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .canva-cats .rect-card .rect-img {
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: 110px !important;
+    flex: 0 0 110px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    margin-top: 10px !important;
+  }
+
+  .canva-cats .rect-card .rect-img img {
+    position: static !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    height: 100% !important;
+    max-height: 110px !important;
+    max-width: 120px !important;
+    object-fit: contain !important;
+    transform: none !important;
+  }
+
+  .canva-cats .rect-card .rect-text {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin-top: auto !important;
+    padding-top: 14px !important;
+    background: none !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .canva-cats .rect-card .rect-text b {
+    font-size: .86rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.3 !important;
+    display: block !important;
+  }
+}
+
+/* ===== تابلت: بطاقات متوسطة ===== */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .canva-cats .rect-card {
+    min-width: 160px !important;
+    max-width: 170px !important;
+    min-height: 200px !important;
+  }
+
+  .canva-cats .rect-card::before {
+    height: 160px !important;
+  }
+
+  .canva-cats .rect-card .rect-img {
+    height: 135px !important;
+    flex: 0 0 135px !important;
+    margin-top: 12px !important;
+  }
+
+  .canva-cats .rect-card .rect-img img {
+    max-height: 135px !important;
+  }
+
+  .canva-cats .rect-card .rect-text b {
+    font-size: .95rem !important;
+  }
+}
