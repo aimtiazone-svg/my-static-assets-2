@@ -8100,10 +8100,17 @@ header .logo {
 }
 
 
-/* ===== على الهاتف: بطاقات أصغر بنفس النسبة ===== */
+/* ===== على الهاتف: بطاقات أصغر — تجاوز القواعد القديمة بالكامل ===== */
 @media (max-width: 640px) {
 
-  /* تأكيد أن الشريط يبدأ من حافة الشاشة */
+  /* إلغاء التمدد الكامل للشاشة من الكود القديم */
+  .canva-cats {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-inline: 0 !important;
+  }
+
   #canvaCats {
     width: 100% !important;
     margin-left: 0 !important;
@@ -8111,38 +8118,95 @@ header .logo {
     padding-inline: 0 !important;
   }
 
-  #canvaCats .cats-rail {
+  #canvaCats .cats-rail,
+  .canva-cats .cats-rail {
     gap: 10px !important;
     padding: 8px 12px 16px !important;
   }
 
-  /* بطاقة أصغر على الهاتف */
+  /* إعادة ضبط البطاقة — بطاقة عمودية أصغر على الهاتف */
   .canva-cats .rect-card {
     min-width: 110px !important;
     max-width: 124px !important;
+    height: auto !important;
+    /* إلغاء height:50px من الكود القديم */
     min-height: 140px !important;
     border-radius: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
   }
 
+  /* إلغاء absolute positioning من الكود القديم وإعادة الـ flex العمودي */
   .canva-cats .rect-card .rect-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
     padding: 10px 6px 10px !important;
+    height: 100% !important;
+    position: static !important;
+    /* إلغاء relative من الكود القديم */
+    overflow: visible !important;
+    /* إلغاء hidden */
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: none !important;
   }
 
-  /* صورة أصغر */
+  /* الصورة — إلغاء position:absolute من الكود القديم */
   .canva-cats .rect-card .rect-img {
+    position: static !important;
+    /* إلغاء absolute */
+    inset: auto !important;
+    width: 100% !important;
     height: 76px !important;
     flex: 0 0 76px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
     margin-bottom: 7px !important;
   }
 
   .canva-cats .rect-card .rect-img img {
+    position: static !important;
+    /* إلغاء position:absolute من الكود القديم */
+    right: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    height: 100% !important;
     max-height: 76px !important;
     max-width: 90px !important;
+    object-fit: contain !important;
+    transform: none !important;
   }
 
-  /* نص أصغر */
+  /* النص — إلغاء position:absolute من الكود القديم */
+  .canva-cats .rect-card .rect-text {
+    position: static !important;
+    /* إلغاء absolute */
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    text-align: center !important;
+    width: 100% !important;
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
   .canva-cats .rect-card .rect-text b {
     font-size: .76rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.3 !important;
+    display: block !important;
   }
 }
 
