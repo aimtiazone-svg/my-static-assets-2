@@ -9600,3 +9600,42 @@ header .logo {
     margin-bottom: 35px !important;
   }
 }
+
+/* ===== PATCH V56: HOVER STRAIGHTENS THE BOX (Flat & Simple) ===== */
+
+/* 1. Base Box (Front Card) starts tilted */
+.canva-cats .rect-card .rect-inner {
+  transform: rotate(4deg) !important; /* Starts tilted */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2), background 0.3s ease !important;
+}
+
+/* 2. On Hover: Straightens out cleanly */
+.canva-cats .rect-card:hover .rect-inner {
+  transform: rotate(0deg) translateY(-2px) !important; /* ONLY straightens to 0deg and slightly lifts */
+  background: #ffffff !important; 
+}
+
+/* 3. Background Card starts tilted the other way */
+.canva-cats .rect-card .rect-inner::before {
+  transform: rotate(-8deg) translate(-4px, 2px) !important; 
+}
+
+/* 4. On Hover (Background Card): Stays still or gently shifts, NO rotation changes */
+.canva-cats .rect-card:hover .rect-inner::before {
+  /* It is still attached to the parent .rect-inner which is straightening. 
+     To make the back card stay roughly in place while the front straightens, 
+     we counter-rotate it back to its original visual position relative to the world */
+  transform: rotate(-4deg) translate(-2px, 2px) !important; 
+  background: #e9ecef !important;
+}
+
+/* 5. Image starts counter-tilted so it looks straight */
+.canva-cats .rect-card .rect-img img {
+  transform: rotate(-4deg) !important; /* Counter tilt so it's vertically straight */
+}
+
+/* 6. On Hover (Image): Since front card goes to 0deg, image must also go to 0deg to stay straight */
+.canva-cats .rect-card:hover .rect-img img {
+  transform: rotate(0deg) scale(1.03) !important; /* Straightens to 0deg with the box */
+}
+
