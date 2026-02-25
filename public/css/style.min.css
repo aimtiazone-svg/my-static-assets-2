@@ -9548,3 +9548,55 @@ header .logo {
     font-size: .85rem !important;
   }
 }
+
+/* ===== PATCH V55: Center Categories Grid & Wrap (Desktop & Mobile) ===== */
+
+/* Allow the entire section to freely center and overflow if needed */
+.canva-cats {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+@media (max-width: 640px) {
+  /* Remove the edge-to-edge trick on mobile so it centers normally in the container */
+  .canva-cats {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-inline: 4px !important;
+  }
+}
+
+/* Transform the scroll rail into a wrapped, centered layout */
+.canva-cats .cats-rail {
+  display: flex !important;
+  flex-wrap: wrap !important; /* Cards now drop to next line if there's no space */
+  justify-content: center !important; /* Center everything in the middle of page! */
+  gap: 16px !important; /* Good spacing between items */
+  overflow: visible !important; /* Stop hiding overflowing absolute text */
+  margin: 0 auto !important; /* Center the rail itself */
+  padding: 10px 0 20px 0 !important;
+}
+
+@media (max-width: 640px) {
+  .canva-cats .cats-rail {
+    gap: 12px !important; /* Tighter gap on phones */
+    padding: 10px 5px !important;
+  }
+}
+
+/* Hide the horizontal scrolling arrows completely since it will now wrap to rows */
+.canva-cats .cats-nav {
+  display: none !important;
+}
+
+/* Ensure absolute text visibility in the new wrapped context */
+.canva-cats .rect-card {
+  margin-bottom: 40px !important; /* Space so text doesn't hit cards in row below */
+}
+
+@media (max-width: 640px) {
+  .canva-cats .rect-card {
+    margin-bottom: 35px !important;
+  }
+}
