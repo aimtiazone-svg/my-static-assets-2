@@ -9745,3 +9745,70 @@ header .logo {
     gap: 16px !important;
   }
 }
+
+/* ===== PATCH V59: Fix Duplicate Text & Ensure Mobile Wrapping Grid ===== */
+
+/* 1. Fix duplicated text issue 
+   There might be a JS script cloning .rect-text directly under .rect-card, 
+   causing two text elements to appear. We FORCE hide any text that is NOT 
+   inside the .rect-inner wrapper, to ensure only one text element shows. 
+*/
+.canva-cats .rect-card > .rect-text {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Ensure the correct text (inside rect-inner) is visible and positioned properly */
+.canva-cats .rect-card .rect-inner .rect-text {
+  display: block !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) rotate(-4deg) !important; /* Counter tilt so text is straight */
+  width: 140px !important;
+  text-align: center !important;
+  margin-top: 15px !important;
+  z-index: 10 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 2. Mobile Grid (As requested: "I want the ones that appear on mobile to be like these squares") 
+   The user wants the desktop grid behavior (wrapping, centered) on mobile too, 
+   not the side-scroller. We remove the scrolling and reinstate wrapping.
+*/
+@media (max-width: 640px) {
+  /* Re-enable wrapping flex grid for mobile */
+  .canva-cats .cats-rail {
+    flex-wrap: wrap !important; /* WRAP to next line instead of scrolling */
+    justify-content: center !important; /* Center the grid */
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    scroll-snap-type: none !important;
+    padding: 10px 4px 20px 4px !important;
+    gap: 16px !important; 
+  }
+
+  /* Reset the container width */
+  .canva-cats {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-inline: 4px !important;
+  }
+
+  /* Keep the size EXACTLY like the desktop squares */
+  .canva-cats .rect-card {
+    flex: 0 0 auto !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
+    height: auto !important;
+    margin-bottom: 45px !important; /* Extra space for text below */
+  }
+
+  .canva-cats .rect-card .rect-inner {
+    width: 130px !important;
+    height: 125px !important;
+  }
+}
