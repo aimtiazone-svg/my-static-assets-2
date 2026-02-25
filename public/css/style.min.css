@@ -9639,3 +9639,66 @@ header .logo {
   transform: rotate(0deg) scale(1.03) !important; /* Straightens to 0deg with the box */
 }
 
+
+/* ===== PATCH V57: Mobile Side-Scrolling (Same dimensions as Desktop) ===== */
+
+@media (max-width: 640px) {
+  /* 1. Force the rail to scroll horizontally instead of wrapping */
+  .canva-cats .cats-rail {
+    flex-wrap: nowrap !important; /* Don't wrap to next line */
+    justify-content: flex-start !important; /* Start from the right (Arabic RTL) */
+    overflow-x: auto !important; /* Enable horizontal scroll */
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important; /* Firefox */
+    padding: 15px 16px 20px 16px !important; /* Padding for neat edges */
+    gap: 16px !important; /* Keep same gap as desktop */
+  }
+
+  /* Hide scrollbar for Chrome/Safari */
+  .canva-cats .cats-rail::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* 2. Make the cards EXACTLY the same size as desktop and prevent shrinking */
+  .canva-cats .rect-card {
+    flex: 0 0 auto !important; /* Don't shrink */
+    scroll-snap-align: start !important;
+    
+    /* Desktop Dimensions */
+    min-width: 140px !important;
+    max-width: 140px !important;
+    height: auto !important;
+    margin-bottom: 40px !important;
+  }
+
+  /* Desktop Box Dimensions */
+  .canva-cats .rect-card .rect-inner {
+    width: 130px !important;
+    height: 125px !important;
+    border-radius: 20px !important;
+  }
+
+  /* Desktop Background Card Dimensions */
+  .canva-cats .rect-card .rect-inner::before {
+    border-radius: 20px !important;
+  }
+
+  /* Desktop Text Dimensions */
+  .canva-cats .rect-card .rect-text {
+    width: 140px !important;
+    margin-top: 18px !important;
+  }
+  .canva-cats .rect-card .rect-text b {
+    font-size: 1.05rem !important; /* Same font size as desktop */
+  }
+
+  /* Optional: Re-enable full width container constraint for the scroll area to hit edges */
+  .canva-cats {
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    padding-inline: 0 !important;
+  }
+}
